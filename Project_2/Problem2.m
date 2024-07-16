@@ -3,7 +3,7 @@
 clc;
 clear all;
 
-% Coefficient Matrix
+% Coefficient Matrix (1 is dx/dt(6))
 A = [ 10  -10   0   0   0   0;
      -10   20 -10   0   0   0;
        0  -10  20 -10   0   0;
@@ -17,12 +17,14 @@ B = [-140; 120; 120; 120; 220; 40];
 % Solve Matrix
 T = A \ B;
 
-% Temperature Gradient at end boundary
+% Temperature Gradient at end boundary so take that as its own value
 temp_gradient = T(6);
 disp(temp_gradient)
 
-% Get and display temp values throughout rod
+% Get and display temp values throughout rod (ignore last value as its temp gradient)
 temp_vals = T(1:5);
+
+% end of bar is 10 so append that as the last recorded temp!
 temp_vals = [temp_vals; 10];
 disp(temp_vals)
 
